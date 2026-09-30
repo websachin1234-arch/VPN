@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon" href="./assests/img/svg/favicon.svg" type="image/x-icon">
+    <title>LaslesVPN</title>
+    <style type="text/tailwindcss">
+        @theme {
+            /* ---------- Font ---------- */
+            --font-rubik: "Rubik", sans-serif;
+
+            /* ---------- Colors ---------- */
+            --color-primary: #F53838;     
+            --color-heading: #0B132A;     
+            --color-body: #4F5665;        
+            --color-border: #DDDDDD;       
+            --color-bg-light: #FBFBFB;    
+            --color-bg-footer: #F8F8F8;    
+            --color-muted: #AFB5C0;        
+            --color-dot: #E0E1E8;         
+            --color-star: #F4A13A;         
+
+            /* ---------- Leading (line-height) ---------- */
+            --leading-body: 30px;         
+            --leading-hero: 70px;          
+            --leading-hero-md: 56px;    
+            --leading-hero-sm: 45px;      
+            --leading-section: 50px;       
+            --leading-section-sm: 40px;    
+            --leading-btn: 25px;           
+            --leading-name: 24px;        
+            --leading-small: 18px;        
+            --leading-tagline: 16px;       
+
+            /* ---------- Shadows ---------- */
+            --shadow-card: 0 50px 114px -30px rgba(13, 16, 37, 0.18);
+            --shadow-primary: 0 30px 50px -15px rgba(245, 56, 56, 0.35);
+            --shadow-arrow: 0 30px 50px -10px rgba(13, 16, 37, 0.25);
+            --shadow-social: 0 15px 15px -8px rgba(13, 16, 37, 0.3);
+            --shadow-social-hover: 0 18px 18px -8px rgba(13, 16, 37, 0.45);
+        }
+
+        @layer components {
+
+            .footer-link {
+                @apply relative w-fit transition-all duration-300 hover:translate-x-1 hover:text-heading after:content-[''] after:absolute after:left-0 after:bottom-0.5 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
+            }
+
+            .t-card {
+                @apply shrink-0 w-[400px] max-w-[400px] p-[30px] bg-white border border-border rounded-[10px] cursor-pointer transition-all duration-300 data-[active=true]:border-primary data-[active=true]:shadow-card focus-visible:outline-2 focus-visible:outline-heading focus-visible:outline-offset-2 max-xl:max-w-none max-xl:w-[calc((100%-24px)/2)] max-md:w-full max-sm:p-5;
+            }
+        }
+    </style>
+</head>
+
+
+<body class="font-rubik overflow-x-hidden font-normal text-base leading-body text-body">
+
+
+    <section class="w-full px-4">
+        <div class="container max-w-[1140px] mx-auto">
+            <nav class="relative">
+                <div class="flex items-center justify-between mt-[46px] max-sm:mt-6">
+                    <div class="shrink-0">
+                        <img src="./assests/img/svg/Logo (1).svg" width="148" height="36.23" alt="Logo"
+                            class="w-[148px] h-auto max-sm:w-[120px]">
+                    </div>
+
+                    <div class="hidden lg:flex leading-none gap-10 max-xl:gap-6 cursor-pointer">
+                        <a href="#" class="hover:text-primary transition">About</a>
+                        <a href="#" class="hover:text-primary transition">Features</a>
+                        <a href="#" class="hover:text-primary transition">Pricing</a>
+                        <a href="#" class="hover:text-primary transition">Testimonials</a>
+                        <a href="#" class="hover:text-primary transition">Help</a>
+                    </div>
+
+                    <div class="hidden lg:flex font-medium leading-none text-black gap-[30px] max-xl:gap-4">
+                        <button class="hover:underline transition-all">Sign In</button>
+                        <button
+                            class="text-primary border border-primary rounded-[50px] py-[13px] px-[45px] max-xl:px-8 hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 cursor-pointer text-nowrap">
+                            Sign Up
+                        </button>
+                    </div>
+
+
+                    <button id="menuBtn" class="flex flex-col gap-1.5 lg:hidden cursor-pointer" aria-label="Open menu"
+                        aria-expanded="false">
+                        <span class="h-[2px] w-7 bg-heading transition-all duration-300"></span>
+                        <span class="h-[2px] w-7 bg-heading transition-all duration-300"></span>
+                        <span class="h-[2px] w-7 bg-heading transition-all duration-300"></span>
+                    </button>
+                </div>
+
+
+                <div id="mobileMenu"
+                    class="hidden absolute left-0 top-full mt-4 z-50 w-full border-t border-gray-100 bg-white px-6 py-6 shadow-lg rounded-[10px]">
+                    <div class="flex flex-col gap-5 justify-center items-center text-body">
+                        <a href="#" class="hover:text-primary">About</a>
+                        <a href="#" class="hover:text-primary">Features</a>
+                        <a href="#" class="hover:text-primary">Pricing</a>
+                        <a href="#" class="hover:text-primary">Testimonials</a>
+                        <a href="#" class="hover:text-primary">Help</a>
+                        <hr class="border-gray-200 w-full">
+                        <a href="#" class="font-medium text-heading">Sign In</a>
+                        <button
+                            class="text-primary border border-primary rounded-[50px] py-[13px] px-[45px] font-medium hover:bg-primary hover:text-white transition-all duration-500 cursor-pointer">
+                            Sign Up
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+
+    <section class="mt-[89px] max-lg:mt-[50px] max-sm:mt-[30px] bg-white px-4">
+        <div class="container max-w-[1274px] mx-auto">
+            <div class="sm-container max-w-[1207px] max-xl:max-w-[1140px] max-xl:mx-auto ml-auto">
+                <div class="flex gap-[41px] max-lg:flex-col max-lg:items-center max-lg:gap-[40px]">
+                    <div class="left max-w-[555px] pt-[28px] max-lg:pt-0 max-lg:text-center">
+                        <h1
+                            class="font-medium text-black text-[50px] leading-hero max-md:text-[42px] max-md:leading-hero-md max-sm:text-4xl max-sm:leading-hero-sm">
+                            Want anything to be easy with <span class="font-bold">LaslesVPN</span> .</h1>
+                        <h2 class="mt-5">Provide a network for all
+                            your needs with ease and fun using <span class="font-medium">LaslesVPN</span> discover
+                            interesting
+                            features from us.</h2>
+                        <button
+                            class="py-[17.5px] mt-5 px-[77.5px] max-sm:px-10 bg-primary border border-primary text-white font-bold text-base leading-btn rounded-[10px] shadow-primary hover:bg-white hover:text-primary transition-all duration-500 cursor-pointer">
+                            Get Started
+                        </button>
+                    </div>
+                    <div class="min-w-0 max-lg:flex max-lg:justify-center">
+                        <img src="./assests/img/png/img-1.png" width="611" height="382" alt=""
+                            class="w-full max-w-[611px] h-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="max-w-[1140px] mx-auto flex items-center pl-[91px] mt-[103px] py-[37.21px] shadow-card rounded-[10px]
+            max-xl:pl-0 max-xl:px-8 max-xl:justify-between
+            max-lg:mt-[80px]
+            max-md:mt-[60px] max-md:grid max-md:grid-cols-2 max-md:gap-6 max-md:py-8
+            max-sm:mt-[40px] max-sm:grid-cols-1 max-sm:px-6">
+            <div class="flex items-center gap-[36.5px] pr-[129px] max-xl:p-0 max-sm:gap-5">
+                <img src="./assests/img/svg/user.svg" width="55" height="55" alt="#" class="shrink-0">
+                <div>
+                    <h1 class="font-bold text-black text-[25px] leading-body max-sm:text-lg">90+</h1>
+                    <h2 class="text-xl leading-body max-sm:text-base">Users</h2>
+                </div>
+            </div>
+            <div class="line max-lg:hidden shrink-0">
+                <img src="./assests/img/png/Vector 14.png" width="2" height="124" alt="">
+            </div>
+            <div class="flex items-center gap-[36.5px] pl-[113px] pr-[136.5px] max-xl:p-0 max-sm:gap-5">
+                <img src="./assests/img/svg/location.svg" width="55" height="55" alt="#" class="shrink-0">
+                <div>
+                    <h1 class="font-bold text-black text-[25px] leading-body max-sm:text-lg">30+</h1>
+                    <h2 class="text-xl leading-body max-sm:text-base">Locations</h2>
+                </div>
+            </div>
+            <div class="line max-lg:hidden shrink-0">
+                <img src="./assests/img/png/Vector 14.png" width="2" height="124" alt="">
+            </div>
+            <div class="flex items-center gap-[36.5px] pl-[91.5px] max-xl:p-0 max-sm:gap-5">
+                <img src="./assests/img/svg/Server.svg" width="55" height="55" alt="#" class="shrink-0">
+                <div>
+                    <h1 class="font-bold text-black text-[25px] leading-body max-sm:text-lg">50+</h1>
+                    <h2 class="text-xl leading-body max-sm:text-base">Servers</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="max-w-[1140px] mx-auto flex gap-[170px] mt-[84px] mb-[127px]
+            max-xl:gap-[80px]
+            max-lg:flex-col max-lg:items-center max-lg:gap-[40px] max-lg:mt-[60px] max-lg:mb-[80px]
+            max-md:mb-[60px]
+            max-sm:mb-[40px] max-sm:gap-[30px]">
+            <div class="pl-[34px] max-xl:pl-0 min-w-0">
+                <img src="./assests/img/png/hero-section.png" width="509" height="415" alt="#"
+                    class="block w-full max-w-[509px] h-auto max-sm:max-w-[296px] mx-auto">
+            </div>
+            <div class="max-w-[428px] w-full max-lg:text-center">
+                <h1 class="font-medium text-[35px] leading-section text-heading max-sm:text-3xl max-sm:leading-section-sm">
+                    We Provide Many Features You Can Use
+                </h1>
+                <div class="mt-8 mb-[23px] max-sm:mt-5">You can
+                    explore the features that we provide with fun and have their own functions each feature.</div>
+                <div class="flex flex-col gap-[15px] max-lg:mx-auto max-lg:w-fit">
+                    <div class="flex gap-[10.8px] items-center">
+                        <img class="max-h-[24px]" src="./assests/img/svg/click-img.svg" width="24" height="24" alt="#">
+                        <div class="text-sm leading-body text-left">Powerfull online
+                            protection.</div>
+                    </div>
+                    <div class="flex gap-[10.8px] items-center">
+                        <img src="./assests/img/svg/click-img.svg" width="24" height="24" alt="#">
+                        <h1 class="text-sm leading-body text-left">Internet without
+                            borders.</h1>
+                    </div>
+                    <div class="flex gap-[10.8px] items-center">
+                        <img src="./assests/img/svg/click-img.svg" width="24" height="24" alt="#">
+                        <h1 class="text-sm leading-body text-left">Supercharged VPN</h1>
+                    </div>
+                    <div class="flex gap-[10.8px] items-center">
+                        <img src="./assests/img/svg/click-img.svg" width="24" height="24" alt="#">
+                        <h1 class="text-sm leading-body text-left">No specific time
+                            limits.</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div>
+        <section class="bg-bg-light px-4 max-lg:pb-[60px] max-sm:pb-[40px]">
+            <div
+                class="max-w-[1092px] mx-auto flex items-center justify-center flex-col pt-[81px] max-lg:pt-[60px] max-sm:pt-[40px]">
+                <div class="text-center max-w-[555px] flex flex-col gap-5 max-sm:gap-3">
+                    <h1
+                        class="font-medium text-[35px] leading-section text-heading max-sm:text-3xl max-sm:leading-section-sm">
+                        Choose Your Plan</h1>
+                    <p>Let's choose the package that is
+                        best for you and explore it happily and cheerfully.</p>
+                </div>
+
+                <div class="main-card w-full flex gap-[50px] mt-[60px] justify-center
+                    max-xl:gap-6
+                    max-lg:flex-wrap max-lg:mt-[50px]
+                    max-sm:mt-[40px]">
+
+
+                    <div
+                        class="group flex flex-col items-center w-full max-w-[330px] min-w-0 pt-20 pb-[50px] px-[70px] max-xl:px-8 max-sm:pt-[40px] max-sm:pb-[40px] border-2 border-border rounded-[10px] hover:border-primary transition-all duration-300 ease-in-out">
+                        <img src="./assests/img/png/free.png" width="145" height="166" alt="Free plan">
+                        <h1 class="font-medium text-lg leading-body text-heading py-[30px] text-center">Free
+                            Plan</h1>
+                        <div class="flex flex-col gap-[10px] flex-1">
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">Unlimited Bandwitch</p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body text-nowrap">Encrypted
+                                    Connection
+                                </p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">No Traffic Logs</p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">Works on All Devices
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-center font-medium text-[25px] leading-body mt-10 mb-5 text-heading">
+                            Free</div>
+                        <button
+                            class="text-primary border-2 border-primary font-bold text-base leading-none py-[13px] px-[62.94px] rounded-[50px] bg-white/10 backdrop-blur-[54px] transition-all duration-500 group-hover:shadow-primary group-hover:bg-primary group-hover:text-white cursor-pointer">Select</button>
+                    </div>
+
+
+                    <div
+                        class="group flex flex-col items-center w-full max-w-[330px] min-w-0 pt-20 pb-[50px] px-[70px] max-xl:px-8 max-sm:pt-[40px] max-sm:pb-[40px] border-2 border-border rounded-[10px] hover:border-primary transition-all duration-300 ease-in-out">
+                        <img src="./assests/img/png/Standard.png" width="145" height="166" alt="Standard plan">
+                        <h1 class="font-medium text-lg leading-body text-heading py-[30px] text-center">Standard
+                            Plan</h1>
+                        <div class="flex flex-col gap-[10px] flex-1">
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">Unlimited Bandwitch</p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body text-nowrap">Encrypted
+                                    Connection
+                                </p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">Yes Traffic Logs</p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">Works on All Devices
+                                </p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">Connect Anyware</p>
+                            </div>
+                        </div>
+                        <div class="text-center leading-body mt-10 mb-5">
+                            <span class="font-medium text-[25px] text-heading">$9</span>
+                            <span class="text-xl"> / mo</span>
+                        </div>
+                        <button
+                            class="text-primary border-2 border-primary font-bold text-base leading-none py-[13px] px-[62.94px] rounded-[50px] bg-white/10 backdrop-blur-[54px] transition-all duration-500 group-hover:shadow-primary group-hover:bg-primary group-hover:text-white cursor-pointer">Select</button>
+                    </div>
+
+                    <div
+                        class="group flex flex-col items-center w-full max-w-[330px] min-w-0 pt-20 pb-[50px] px-[70px] max-xl:px-8 max-sm:pt-[40px] max-sm:pb-[40px] border-2 border-border rounded-[10px] hover:border-primary transition-all duration-300 ease-in-out">
+                        <img src="./assests/img/png/Premium.png" width="145" height="166" alt="Premium plan">
+                        <h1 class="font-medium text-lg leading-body text-heading py-[30px] text-center">Premium
+                            Plan</h1>
+                        <div class="flex flex-col gap-[10px] flex-1">
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">Unlimited Bandwitch</p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body text-nowrap">Encrypted
+                                    Connection
+                                </p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">Yes Traffic Logs</p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">Works on All Devices
+                                </p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">Connect Anyware</p>
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <img src="./assests/img/svg/tick.svg" width="24" height="24" alt="">
+                                <p class="text-sm leading-body">Get New Features</p>
+                            </div>
+                        </div>
+                        <div class="text-center leading-body mt-10 mb-5">
+                            <span class="font-medium text-[25px] text-heading">$12</span>
+                            <span class="text-xl"> / mo</span>
+                        </div>
+                        <button
+                            class="text-primary border-2 border-primary font-bold text-base leading-none py-[13px] px-[62.94px] rounded-[50px] bg-white/10 backdrop-blur-[54px] transition-all duration-500 group-hover:shadow-primary group-hover:bg-primary group-hover:text-white cursor-pointer">Select</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <div class="container max-w-[1140px] mx-auto px-4">
+        <div class="mt-[150px] max-lg:mt-[80px] max-md:mt-[60px] max-sm:mt-[40px]">
+            <div class="max-w-[555px] mx-auto text-center gap-5 flex flex-col items-center max-sm:gap-3">
+                <h1
+                    class="font-medium text-black text-[35px] leading-section max-w-[385px] max-sm:text-3xl max-sm:leading-section-sm">
+                    Huge Global Network of Fast VPN</h1>
+                <p class="text-black">See <span class="font-medium">LaslesVPN</span>
+                    everywhere to make it easier for you when you move locations.</p>
+            </div>
+            <div class="flex items-center justify-center pt-[155px] max-lg:pt-[80px] max-md:pt-[60px] max-sm:pt-[40px]">
+                <img class="max-w-[1037px] w-full h-auto" src="./assests/img/png/map.png" width="1037" height="538"
+                    alt="map">
+            </div>
+
+            <div class="mt-[36px] max-md:overflow-x-auto max-md:pb-2">
+                <img src="./assests/img/png/Sponsored.png" width="1136" height="209" alt="Sponsored"
+                    class="w-full max-w-[1136px] h-auto mx-auto max-md:min-w-[640px]">
+            </div>
+        </div>
+    </div>
+
+
+    <section class="my-[58px] px-4">
+        <div class="container max-w-[1140px] mx-auto">
+
+            <div class="max-w-[555px] mx-auto text-center flex flex-col items-center gap-5 max-sm:gap-3">
+                <h1
+                    class="font-medium text-[35px] leading-section text-heading max-w-[448px] max-sm:text-3xl max-sm:leading-section-sm">
+                    Trusted by Thousands of Happy Customer</h1>
+                <p>These are the stories of our
+                    customers who have joined us with great pleasure when using this crazy feature.</p>
+            </div>
+
+            <div class="mt-16 max-sm:mt-10">
+                <div
+                    class="overflow-hidden xl:w-[calc(50vw+610px)] max-xl:w-[calc(100%+40px)] max-w-none pl-10 pb-[100px] -ml-10 -mb-[100px]">
+                    <div id="track"
+                        class="flex gap-[52px] max-xl:gap-6 max-md:gap-6 transition-transform duration-500 ease-out">
+
+                        <!-- Card 1 -->
+                        <article data-card data-active="true" tabindex="0" class="t-card">
+                            <div class="flex items-center gap-[18px] max-sm:gap-3">
+                                <div class="shrink-0">
+                                    <img src="./assests/img/svg/Viezh-Robert.svg" width="50" height="50" alt="#">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="font-medium text-lg leading-name text-heading">Viezh Robert</h3>
+                                    <p class="text-sm leading-small">Warsaw, Poland</p>
+                                </div>
+                                <div class="flex items-center gap-2 leading-6 text-heading">4.5 <span
+                                        class="text-star">★</span></div>
+                            </div>
+                            <p class="mt-[10px] text-heading">“Wow... I am
+                                very happy to use this VPN, it turned out to be more than my expectations and so far
+                                there have been no problems. LaslesVPN always the best.”.</p>
+                        </article>
+
+                        <!-- Card 2 -->
+                        <article data-card data-active="false" tabindex="0" class="t-card">
+                            <div class="flex items-center gap-[18px] max-sm:gap-3">
+                                <div class="shrink-0">
+                                    <img src="./assests/img/svg/Yessica-Christy.svg" width="50" height="50" alt="#">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="font-medium text-lg leading-name text-heading">Yessica Christy
+                                    </h3>
+                                    <p class="text-sm leading-small">Shanxi, China</p>
+                                </div>
+                                <div class="flex items-center gap-2 leading-6 text-heading">4.5 <span
+                                        class="text-star">★</span></div>
+                            </div>
+                            <p class="mt-[10px] text-heading">“I like it
+                                because I like to travel far and still can connect with high speed.”.</p>
+                        </article>
+
+                        <!-- Card 3 -->
+                        <article data-card data-active="false" tabindex="0" class="t-card">
+                            <div class="flex items-center gap-[18px] max-sm:gap-3">
+                                <div class="shrink-0">
+                                    <img src="./assests/img/svg/Kim-Young-Jou.svg" width="50" height="50" alt="#">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="font-medium text-lg leading-name text-heading">Kim Young Jou</h3>
+                                    <p class="text-sm leading-small">Seoul, South Korea
+                                    </p>
+                                </div>
+                                <div class="flex items-center gap-2 leading-6 text-heading">4.5 <span
+                                        class="text-star">★</span></div>
+                            </div>
+                            <p class="mt-[10px] text-heading">“This is very
+                                unusual for my business that currently requires a virtual private network that has
+                                high security.”.</p>
+                        </article>
+
+                        <!-- Card 4 -->
+                        <article data-card data-active="false" tabindex="0" class="t-card">
+                            <div class="flex items-center gap-[18px] max-sm:gap-3">
+                                <div class="shrink-0">
+                                    <img src="./assests/img/svg/Viezh-Robert.svg" width="50" height="50" alt="#">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="font-medium text-lg leading-name text-heading">Viezh Robert</h3>
+                                    <p class="text-sm leading-small">Warsaw, Poland</p>
+                                </div>
+                                <div class="flex items-center gap-2 leading-6 text-heading">4.5 <span
+                                        class="text-star">★</span></div>
+                            </div>
+                            <p class="mt-[10px] text-heading">“Wow... I am
+                                very happy to use this VPN, it turned out to be more than my expectations and so far
+                                there have been no problems. LaslesVPN always the best.”.</p>
+                        </article>
+
+                        <!-- Card 5 -->
+                        <article data-card data-active="false" tabindex="0" class="t-card">
+                            <div class="flex items-center gap-[18px] max-sm:gap-3">
+                                <div class="shrink-0">
+                                    <img src="./assests/img/svg/Yessica-Christy.svg" width="50" height="50" alt="#">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="font-medium text-lg leading-name text-heading">Yessica Christy
+                                    </h3>
+                                    <p class="text-sm leading-small">Shanxi, China</p>
+                                </div>
+                                <div class="flex items-center gap-2 leading-6 text-heading">4.5 <span
+                                        class="text-star">★</span></div>
+                            </div>
+                            <p class="mt-[10px] text-heading">“I like it
+                                because I like to travel far and still can connect with high speed.”.</p>
+                        </article>
+
+                        <!-- Card 6 -->
+                        <article data-card data-active="false" tabindex="0" class="t-card">
+                            <div class="flex items-center gap-[18px] max-sm:gap-3">
+                                <div class="shrink-0">
+                                    <img src="./assests/img/svg/Kim-Young-Jou.svg" width="50" height="50" alt="#">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="font-medium text-lg leading-name text-heading">Kim Young Jou</h3>
+                                    <p class="text-sm leading-small">Seoul, South Korea
+                                    </p>
+                                </div>
+                                <div class="flex items-center gap-2 leading-6 text-heading">4.5 <span
+                                        class="text-star">★</span></div>
+                            </div>
+                            <p class="mt-[10px] text-heading">“This is very
+                                unusual for my business that currently requires a virtual private network that has
+                                high security.”.</p>
+                        </article>
+
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mt-16 max-sm:mt-10 w-full xl:w-[1167px] xl:max-w-none">
+                    <div id="dots" class="flex items-center gap-[18px] max-sm:gap-2"></div>
+                    <div class="flex gap-6 max-sm:gap-3">
+                        <button id="prev" aria-label="Previous testimonial"
+                            class="size-[60px] max-sm:size-[45px] rounded-full grid place-items-center border border-primary text-primary bg-white cursor-pointer transition-all duration-300 enabled:hover:bg-primary enabled:hover:text-white enabled:hover:shadow-arrow disabled:opacity-40 disabled:cursor-not-allowed">
+                            <svg class="size-6 max-sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 12H5M11 6l-6 6 6 6" />
+                            </svg>
+                        </button>
+                        <button id="next" aria-label="Next testimonial"
+                            class="size-[60px] max-sm:size-[45px] rounded-full grid place-items-center border border-primary bg-primary text-white cursor-pointer transition-all duration-300 shadow-primary enabled:hover:bg-white enabled:hover:text-primary enabled:hover:shadow-arrow disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none">
+                            <svg class="size-6 max-sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="px-4 relative z-10">
+        <div class="shadow-card max-w-[1140px] mx-auto py-[58.5px] px-[70px] relative bottom-[-100px] bg-white rounded-[10px]
+            max-lg:px-10
+            max-md:py-10
+            max-sm:px-6 max-sm:py-8">
+            <div class="flex justify-between items-center max-md:flex-col max-md:gap-[30px] max-md:text-center">
+                <div class="max-w-[410px] flex flex-col gap-5 max-md:items-center">
+                    <h1
+                        class="font-medium text-black text-[35px] leading-section-sm max-w-[372px] max-sm:text-3xl max-sm:leading-section-sm">
+                        Subscribe Now for Get Special Features!
+                    </h1>
+                    <h1 class="leading-tagline">Let's subscribe with us and find
+                        the fun.</h1>
+                </div>
+                <div>
+                    <button
+                        class="bg-primary text-white px-[65.5px] max-sm:px-10 py-[17.5px] font-bold text-base leading-btn rounded-[10px] border border-primary mt-[28px] max-md:mt-0 text-nowrap shadow-primary hover:bg-white hover:text-primary transition-all duration-500 cursor-pointer">Subscribe
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bg-bg-footer px-4">
+        <div class="container max-w-[1140px] mx-auto flex justify-between pt-[180px] pb-[100px]
+            max-lg:flex-col max-lg:gap-[40px] max-lg:pb-[80px]
+            max-md:pb-[60px]
+            max-sm:pt-[160px] max-sm:pb-[40px]">
+            <div class="left">
+                <div class="logo cursor-pointer">
+                    <img src="./assests/img/svg/Logo (1).svg" width="149" height="39" alt="logo">
+                </div>
+                <div class="max-w-[340px] mt-5 mb-[30px]">
+                    <h1><span class="font-medium">LaslesVPN</span> is a private
+                        virtual network that has unique features and has high security.</h1>
+                </div>
+                <div class="flex gap-5">
+
+                    <!-- Facebook -->
+                    <a href="#" aria-label="Facebook"
+                        class="size-[33.6px] rounded-full grid place-items-center bg-white text-primary shadow-social hover:shadow-social-hover transition-all duration-300 hover:bg-primary hover:text-white hover:scale-110 hover:-translate-y-1">
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M13.5 22v-9h3l.5-3.5h-3.5V7.2c0-1 .3-1.7 1.8-1.7H17V2.3C16.7 2.2 15.6 2 14.4 2 11.8 2 10 3.6 10 6.5v3H7V13h3v9h3.5z" />
+                        </svg>
+                    </a>
+
+                    <!-- Twitter -->
+                    <a href="#" aria-label="Twitter"
+                        class="size-[33.6px] rounded-full grid place-items-center bg-white text-primary shadow-social hover:shadow-social-hover transition-all duration-300 hover:bg-primary hover:text-white hover:scale-110 hover:-translate-y-1">
+                        <svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                        </svg>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="#" aria-label="Instagram"
+                        class="size-[33.6px] rounded-full grid place-items-center bg-white text-primary shadow-social hover:shadow-social-hover transition-all duration-300 hover:bg-primary hover:text-white hover:scale-110 hover:-translate-y-1">
+                        <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd">
+                            <path
+                                d="M6 2h12a4 4 0 014 4v12a4 4 0 01-4 4H6a4 4 0 01-4-4V6a4 4 0 014-4zm6 5a5 5 0 100 10 5 5 0 000-10zm0 2.2a2.8 2.8 0 110 5.6 2.8 2.8 0 010-5.6zM16.5 4.5h3v3h-3z" />
+                        </svg>
+                    </a>
+
+                </div>
+                <div class="text-muted mt-[30px]">
+                    <h1>©2020Lasles <span class="font-medium">VPN</span></h1>
+                </div>
+            </div>
+
+            <div class="right flex gap-[126px] max-xl:gap-[60px] max-sm:gap-x-10 max-sm:gap-y-8 max-sm:flex-wrap">
+                <div>
+                    <div class="font-medium text-black text-lg leading-body mb-5">Product</div>
+                    <div class="flex flex-col gap-[10px]">
+                        <a class="footer-link" href="#">Download</a>
+                        <a class="footer-link" href="#">Pricing</a>
+                        <a class="footer-link" href="#">Locations</a>
+                        <a class="footer-link" href="#">Server</a>
+                        <a class="footer-link" href="#">Countries</a>
+                        <a class="footer-link" href="#">Blog</a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="font-medium text-black text-lg leading-body mb-5">Engage</div>
+                    <div class="flex flex-col gap-[10px]">
+                        <a class="footer-link" href="#">LaslesVPN ?</a>
+                        <a class="footer-link" href="#">FAQ</a>
+                        <a class="footer-link" href="#">Tutorials</a>
+                        <a class="footer-link" href="#">About Us</a>
+                        <a class="footer-link" href="#">Privacy Policy</a>
+                        <a class="footer-link" href="#">Terms of Service</a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="font-medium text-black text-lg leading-body mb-5">Earn Money</div>
+                    <div class="flex flex-col gap-[10px]">
+                        <a class="footer-link" href="#">Affiliate</a>
+                        <a class="footer-link" href="#">Become Partner</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const bars = menuBtn.querySelectorAll("span");
+
+        function setMenu(open) {
+            mobileMenu.classList.toggle("hidden", !open);
+            menuBtn.setAttribute("aria-expanded", open);
+            menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+
+            bars[0].classList.toggle("translate-y-2", open);
+            bars[0].classList.toggle("rotate-45", open);
+            bars[1].classList.toggle("opacity-0", open);
+            bars[2].classList.toggle("-translate-y-2", open);
+            bars[2].classList.toggle("-rotate-45", open);
+        }
+
+        menuBtn.addEventListener("click", () => {
+            setMenu(mobileMenu.classList.contains("hidden"));
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 1024) setMenu(false);
+        });
+
+     
+        const track = document.getElementById("track");
+        const cards = [...track.querySelectorAll("[data-card]")];
+        const dotsBox = document.getElementById("dots");
+        const prevBtn = document.getElementById("prev");
+        const nextBtn = document.getElementById("next");
+
+        let VISIBLE = 3;
+        let last = 0;
+        let index = 0;
+        let dots = [];
+
+        function getVisible() {
+            if (window.matchMedia("(min-width: 1280px)").matches) return 3;
+            if (window.matchMedia("(min-width: 768px)").matches) return 2;
+            return 1;
+        }
+
+        function buildDots() {
+            VISIBLE = getVisible();
+            last = cards.length - VISIBLE;
+            index = Math.min(index, last);
+            dotsBox.innerHTML = "";
+
+            for (let i = 0; i <= last; i++) {
+                const dot = document.createElement("button");
+                dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+                dot.dataset.active = "false";
+                dot.className =
+                    "h-[14px] w-[14px] max-sm:h-[10px] max-sm:w-[10px] rounded-full bg-dot cursor-pointer transition-all duration-300 " +
+                    "data-[active=true]:w-[45px] max-sm:data-[active=true]:w-[28px] data-[active=true]:bg-primary";
+                dot.addEventListener("click", () => goTo(i));
+                dotsBox.appendChild(dot);
+            }
+            dots = [...dotsBox.children];
+            update();
+        }
+
+        function update() {
+            const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+            const step = cards[0].offsetWidth + gap;
+            track.style.transform = `translateX(${-index * step}px)`;
+
+            cards.forEach((c, i) => (c.dataset.active = String(i === index)));
+            dots.forEach((d, i) => (d.dataset.active = String(i === index)));
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === last;
+        }
+
+        function goTo(i) {
+            index = Math.min(Math.max(i, 0), last);
+            update();
+        }
+
+        prevBtn.addEventListener("click", () => goTo(index - 1));
+        nextBtn.addEventListener("click", () => goTo(index + 1));
+
+        cards.forEach((c, i) => {
+            c.addEventListener("click", () => goTo(i));
+            c.addEventListener("keydown", (e) => { if (e.key === "Enter") goTo(i); });
+        });
+
+      
+        let startX = 0;
+        const viewport = track.parentElement;
+        viewport.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+        viewport.addEventListener("touchend", (e) => {
+            const diff = e.changedTouches[0].clientX - startX;
+            if (Math.abs(diff) > 40) goTo(index + (diff < 0 ? 1 : -1));
+        });
+
+        window.addEventListener("resize", buildDots);
+        buildDots();
+    </script>
+
+</body>
+
+</html>
